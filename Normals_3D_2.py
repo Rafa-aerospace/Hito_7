@@ -3,11 +3,8 @@ Created on Mon Nov 14 17:03:33 2022
 @authors: Rafael Rivero de Nicolás, Guillermo García del Río, Inés Arauzo Andrés
 """
 
-from numpy import deg2rad, array, size, dot, zeros, min, max, logical_and, sqrt, hstack, sin, cos, arctan, linspace, geomspace, reshape
-from numpy.linalg import norm
-from time import process_time
-from Math_Utilities import rotation_rev, rotation_BW, rotation_WB, TBW_matrix, Normal
-from Geometry import conito
+from numpy import array, size, dot, zeros, linspace, reshape
+from Math_Utilities import rotation_rev, rotation_WB, TBW_matrix, Normal
 
 from numba import njit
 

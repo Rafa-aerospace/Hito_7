@@ -5,9 +5,7 @@ Created on Fri Dec  9 16:14:06 2022
 @author: Rafael Rivero de Nicolás, Guillermo García del Río, Inés Arauzo Andrés
 """
 
-from numpy import deg2rad, array, size, dot, zeros, min, max, logical_and, sqrt, hstack, sin, cos, arctan, linspace, geomspace, reshape
-from numpy.linalg import norm
-from time import process_time
+from numpy import logical_and, sqrt, hstack
 
 
 #### Funciones para definir la geometría ####

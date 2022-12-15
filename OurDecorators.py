@@ -2,9 +2,8 @@
 Created on Mon Nov 14 17:03:33 2022
 @authors: Rafael Rivero de Nicolás, Guillermo García del Río, Inés Arauzo Andrés
 """
-from numpy import deg2rad, array, size, dot, zeros, min, max, logical_and, sqrt, hstack, sin, cos, arctan, linspace, geomspace, reshape
-from numpy.linalg import norm
-from time import process_time
+from numpy import min, max
+
 
 import tracemalloc
 from time import perf_counter

@@ -4,7 +4,7 @@ Created on Sun Dec 11.33.00 2022
 """
 ### IMPORTS ###
 
-from numpy import deg2rad, array, size, dot, zeros, min, max, logical_and, sqrt, hstack, sin, cos, arctan, linspace, geomspace, reshape, pi, floor, ceil, sum
+from numpy import linspace, pi
 
 from Aerodynamics_2 import Cp_3D_Modified, Cp_3D, Cp_3D_for_coefs, aero_coeffs# Cp_Dist_1D_by_Newton, Cp_Dist_1D_by_Newton_Modified,
 from Math_Utilities import Analytical_Derivative
@@ -27,7 +27,7 @@ n_x = 100       # Number of x-axis panels for a linspace partition [-]
 n_phi = 500     # Number of panels for each revoluting section [-]
 alpha = 0#45      # Angle of attack of the incident flow [DEG]
 beta = 0        # Sideslip angle of the incident flow [DEG]
-Mach = 15        # Mach number of the incident flow [-]
+Mach = 10        # Mach number of the incident flow [-]
 gamma = 1.4     # Adiabatic coefficent of the incident flow [-]
 
 ######################################
@@ -44,7 +44,8 @@ dz = Analytical_Derivative( x, Geometry_selected ) #
 
 # Cps = Cp_3D(alpha,beta, n_x, n_phi, Geometry_selected)
 #Cps, Normals = Cp_3D_for_coefs(alpha,beta, n_x, n_phi, Geometry_selected)
-Cps_mod = Cp_3D_Modified(alpha, beta, n_x, n_phi, Geometry_selected, Mach, gamma)
+Cps_mod, Normals = Cp_3D_Modified(alpha, beta, n_x, n_phi, Geometry_selected, Mach, gamma)
+print(Cps_mod)
 
 
 #Coefs = aero_coeffs(Cps, Normals, x, z, dz, n_x, n_phi, dx, dphi, alpha, beta)
