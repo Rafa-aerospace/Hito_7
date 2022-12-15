@@ -6,7 +6,7 @@ from numpy import deg2rad, array, size, dot, zeros, min, max, logical_and, sqrt,
 from numpy.linalg import norm
 from time import process_time
 from Math_Utilities import Theta_calculation, TWB_matrix
-from OurDecorators import Simple_plot_1D, Plot_geometry_1D
+from OurDecorators import Function_Profiling, Simple_plot_1D, Plot_geometry_1D
 from Normals_3D_2 import Rotated_Normals_Loops, Rotated_Normals_Giant
 from numba import njit
 import matplotlib.pyplot as plt
@@ -53,6 +53,7 @@ def Cp_Dist_1D_by_Newton_Modified(x, f, M, gamma=1.4, Mach=10):
 
     return Cp_modified
 
+@Function_Profiling
 def Cp_3D(alpha: float, beta: float, nx:int, nphi: int, f):
     """This function calculates the Cp for each normal of the surface. Remember that the Normals_Tensor already contemplates both the angle of atack and the sideslip.
 
@@ -93,6 +94,8 @@ def Cp_3D(alpha: float, beta: float, nx:int, nphi: int, f):
 
     return Cp_matrix
 
+
+@Function_Profiling
 def Cp_3D_for_coefs(alpha: float, beta: float, nx:int, nphi: int, f):
     """This function calculates the Cp for each normal of the surface. Remember that the Normals_Tensor already contemplates both the angle of atack and the sideslip.
 
@@ -135,7 +138,7 @@ def Cp_3D_for_coefs(alpha: float, beta: float, nx:int, nphi: int, f):
 
 
 
-
+@Function_Profiling
 def Cp_3D_Modified(alpha: float, beta: float, nx:int, nphi: int, f, M: float, gamma: float):
     """This function calculates the modified Cp for each normal of the surface. Remember that the Normals_Tensor already contemplates both the angle of atack and the sideslip.
 
@@ -158,7 +161,7 @@ def Cp_3D_Modified(alpha: float, beta: float, nx:int, nphi: int, f, M: float, ga
 
     Cp_max = 2/(gamma*M**2) * ( (((gamma+1)**2 * M**2)/(4*gamma*M**2-2*(gamma-1)))**(gamma/(gamma-1)) * (1-gamma+2*gamma*M**2)/(gamma+1) - 1 )
 
-    V0 = array([1,0,0])
+    V0 = array([-1,0,0])
 
     for i in range(nx):
         for j in range(nphi):

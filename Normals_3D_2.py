@@ -9,7 +9,6 @@ from time import process_time
 from Math_Utilities import rotation_rev, rotation_BW, rotation_WB, TBW_matrix, Normal
 from Geometry import conito
 
-
 from numba import njit
 
 import matplotlib.pyplot as plt
@@ -45,7 +44,7 @@ def Revoluting_Normals(nx:int, nphi: int, f):
     x = linspace(0, 1, nx + 1)
     Normals_array = Normal(x, f)
     Normals_revoluted = zeros([nx, nphi, 3])
-    print(Normals_array[0,:])
+    
 
     for i, n in enumerate(Normals_array):
 
@@ -75,8 +74,6 @@ def Rotated_Normals_Loops(alpha: float, beta: float, nx:int, nphi: int, f):
     """
     Normals_tensor = Revoluting_Normals(nx, nphi, f)
 
-    t0 = process_time()
-
     ncomps = size(Normals_tensor,2)     # Number of components (3 = i j k)
 
     Normals_tensor_rotated = zeros([nx, nphi, ncomps])
@@ -85,9 +82,6 @@ def Rotated_Normals_Loops(alpha: float, beta: float, nx:int, nphi: int, f):
         for i in range(nphi):
             #Normals_tensor_rotated[j,i,:] = rotation_BW(alpha,beta,Normals_tensor[j,i,:])
             Normals_tensor_rotated[j,i,:] = rotation_WB(alpha,beta,Normals_tensor[j,i,:])
-
-    t1 = process_time()
-    print('Elapsed processtime=', t1-t0)
 
     return Normals_tensor_rotated
 
@@ -107,7 +101,6 @@ def Rotated_Normals_Giant(alpha: float, beta: float, nx:int, nphi: int, f):
     """
     Normals_tensor = Revoluting_Normals(nx, nphi, f)
 
-    t0 = process_time()
     nx     = size(Normals_tensor,0)     # Number of partitions in X = Number of matrixes in the tensor
     nphi   = size(Normals_tensor,1)     # Number of partitions in the revolution angle = Number of files in the matrix
     ncomps = size(Normals_tensor,2)     # Number of components (3 = i j k)
@@ -124,9 +117,6 @@ def Rotated_Normals_Giant(alpha: float, beta: float, nx:int, nphi: int, f):
         p_O = reshape(Output[i,:,:], [3*nphi])         # Pointer to the Output tensor. It will be a column vector
         p_T = reshape(Normals_tensor[i,:,:], [3*nphi])  # Pointer to the Input tensor. It will be a column  vector
         p_O[:] = p_O[:] + dot(Tbw_giant, p_T)          # Vector corresponding to all normals rotated for a x value
-
-    t1 = process_time()
-    print('Elapsed processtime=', t1-t0)
 
     return Output
 

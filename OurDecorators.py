@@ -6,7 +6,10 @@ from numpy import deg2rad, array, size, dot, zeros, min, max, logical_and, sqrt,
 from numpy.linalg import norm
 from time import process_time
 
-from numba import njit
+import tracemalloc
+from time import perf_counter
+
+# from numba import njit
 
 import matplotlib.pyplot as plt
 from matplotlib import rc # LaTeX tipography
@@ -21,7 +24,26 @@ matplotlib.rc('xtick', labelsize=18)
 matplotlib.rc('ytick', labelsize=18)
 
 
-def
+def Function_Profiling(f):
+
+    def profiled_f( *args, **kwargs): # Tupla de los valores de los argumentos de la función. kwargs: Key-Word arguments
+
+        print("Input arguments of function: ", f.__name__)
+
+        tracemalloc.start()
+        start_time = perf_counter()
+        r = f(*args, **kwargs)
+        finish_time = perf_counter()
+        current, peak = tracemalloc.get_traced_memory() # Peaak memory used
+
+        print("Memory Peak=", current/10**6, "MB")
+
+        print("Elapsed CPU time =", finish_time-start_time, "second")
+
+        tracemalloc.stop()
+        return r
+
+    return profiled_f
 
 
 
