@@ -35,7 +35,7 @@ def Horizontal_Parabola(x): # Libro Anderson, Cap 3, page 63
 # @Plot_Simetric_Geometry_1D
 def Quarter_of_a_Circle(x):
 
-    return sqrt( x )
+    return sqrt(1 - (x-1)**2)
 
 #@Plot_Simetric_Geometry_1D
 def conito(x):

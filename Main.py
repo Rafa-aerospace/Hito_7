@@ -1,29 +1,22 @@
-from Functionalities import Coefs_fM, Convergence, Basic
+from Functionalities import Execute
 
+Geometry_names = ["Horizontal_Parabola",
+                  "Semiesfera",
+                  "Cono",
+                  "F100"]
 
-# "Horizontal_Parabola":
-# "Semiesfera"
-# "Cono"
-# "F100"
+Functionalities_names = ["Evolución de los Coeficientes con el Mach",
+                         "Cáculo y representación 3-D",
+                         "Convergencia con el número de elementos"]
 
-
+#################################
 nx = 200; nphi = 200
-geometry_name = "F100"
+geometry_name = Geometry_names[1]
 
 Mach = 5; gamma = 1.4
 alpha = 0; beta = 0
 
-Basic(geometry_name, alpha, beta, Mach, nx, nphi,gamma)
-# Coefs_fM(geometry_name, alpha, beta, nx, nphi)
-# Convergence(geometry_name, Mach, alpha, beta)
+application = Functionalities_names[1]
+#################################
 
-
-
-
-
-
-
-
-
-
-
+Execute(geometry_name, application, nx, nphi, alpha, beta, Mach, gamma)

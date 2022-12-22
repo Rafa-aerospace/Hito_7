@@ -48,8 +48,8 @@ def py2stl(z: array, name: str):
 
     if not os.path.exists(filepath):
 
-        nx = 100
-        nphi = 500
+        nx = 200
+        nphi = 200
         x = linspace(0, 1, nx + 1)
         znum = int( len(z) / (nx + 1) )
 

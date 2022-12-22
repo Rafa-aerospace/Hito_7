@@ -21,8 +21,8 @@ class Revolution_Surface(object):
             DESCRIPTION.
         surf_name : String
             Name of the surface. The default is "Unknown".
-        Coords: List 
-            List with the matrix coordinates of the surface.       
+        Coords: List
+            List with the matrix coordinates of the surface.
         '''
         self.x = x
         self.z = z
@@ -32,7 +32,7 @@ class Revolution_Surface(object):
         self.dx = dx
         self.dphi = dphi
         self.surf_name = surf_name
-        self.coords = [ L[0], L[1], L[2] ] # List with X, Y, Z mesh for representation
+        self.coords = [ L[0], L[1], L[2] ] # List with X, Y, Z mesh for 3-D representation
 
 
 def Surface_selection(name, nx, nphi):
@@ -41,7 +41,7 @@ def Surface_selection(name, nx, nphi):
     Normals_tensor, dx, dphi = Revoluting_Normals(nx, nphi, z)
 
     [X, Y, Z] = Mesh_gen(x, z, nx, nphi)
-    
+
     Surface = Revolution_Surface(x, z, nx, nphi, dx, dphi, Normals_tensor, [X, Y, Z], name)
 
     py2stl(z, name)
